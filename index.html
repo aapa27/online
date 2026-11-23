@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dontpad Live Chat</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #17191f;
+            color: #f1f1f1;
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-container {
+            max-width: 750px;
+            margin: 20px auto;
+            background: #22252d;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        #messages {
+            height: 400px;
+            overflow-y: auto;
+            background: #17191f;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            overflow-wrap: anywhere;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .timestamp {
+            color: #888;
+            font-size: 11px;
+        }
+
+        .message-text {
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+
+        input, button {
+            border: none;
+            border-radius: 6px;
+            padding: 11px;
+            font-size: 14px;
+        }
+
+        input[type="text"] {
+            background: #343842;
+            color: white;
+            width: 100%;
+        }
+
+        input[type="color"] {
+            width: 50px;
+            height: 40px;
+            padding: 3px;
+            background: #343842;
+            cursor: pointer;
+        }
+
+        button {
+            background: #3985e8;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #286dcc;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .settings {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+
+        .composer {
+            display: flex;
+            gap: 10px;
+        }
+
+        .composer input {
+            flex: 1;
+        }
+
+        #status {
+            font-size: 12px;
+            color: #999;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <h2>Dontpad Live Chat</h2>
+
+    <div id="messages">
+        Loading messages...
+    </div>
+
+    <div class="settings">
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Your name"
+            maxlength="30"
+        >
+
+        <input
+            type="color"
+            id="usernameColor"
+            value="#ff5252"
+            title="Choose your username color"
+        >
+
+    </div>
+
+    <form id="chatForm" class="composer">
+
+        <input
+            type="text"
+            id="messageInput"
+            placeholder="Write a message..."
+            maxlength="2000"
+            autocomplete="off"
+            required
+        >
+
+        <button type="submit" id="sendButton">
+            Send
+        </button>
+
+    </form>
+
+    <div id="status">Connecting...</div>
+
+</div>
+
+<script src="script3.js"></script>
+
+</body>
+</html>
