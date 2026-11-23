@@ -108,6 +108,12 @@ function renderMessages() {
         username.className = "username";
         username.textContent = message.name;
 
+        const userId = document.createElement("span");
+        userId.className = "user-id";
+        userId.textContent = message.id
+            ? " #" + message.id
+            : " #OLD";
+
         // Validate color before applying it
         const color = /^#[0-9a-fA-F]{6}$/.test(message.color)
             ? message.color
@@ -128,6 +134,7 @@ function renderMessages() {
         text.textContent = message.message;
 
         header.appendChild(username);
+        header.appendChild(userId);
         header.appendChild(timestamp);
 
         container.appendChild(header);
@@ -194,8 +201,27 @@ async function sendMessage(event) {
             throw new Error("Invalid chat JSON format");
         }
 
+        function getUserId() {
+
+            let id = localStorage.getItem("chatUserId");
+
+            if (!id) {
+                id = crypto.randomUUID()
+                    .replace(/-/g, "")
+                    .substring(0, 8)
+                    .toUpperCase();
+
+                localStorage.setItem("chatUserId", id);
+            }
+
+            return id;
+        }
+
+        const USER_ID = getUserId();
+
         // Create new message
         const newMessage = {
+            id: USER_ID,
             name: name,
             color: color,
             message: message,
