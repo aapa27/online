@@ -35,7 +35,12 @@ async function loadChat() {
 
     try {
 
-        const response = await fetch(READ_PROXY + API_URL);
+        const response = await fetch(
+            READ_PROXY + API_URL + "&_=" + Date.now(),
+            {
+                cache: "no-store"
+            }
+        );
 
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
@@ -162,7 +167,14 @@ async function sendMessage(event) {
     try {
 
         // Fetch the latest version before appending
-        const readResponse = await fetch(READ_PROXY + API_URL);
+        // const readResponse = await fetch(READ_PROXY + API_URL);
+
+        const readResponse = await fetch(
+            READ_PROXY + API_URL + "&_=" + Date.now(),
+            {
+                cache: "no-store"
+            }
+        );
 
         if (!readResponse.ok) {
             throw new Error("Could not retrieve latest chat");
